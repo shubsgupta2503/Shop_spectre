@@ -1,0 +1,39 @@
+<%- include('partials/header.ejs',{ loggedInCustomer,logStatus: logStatus }) %>
+    <div class="row g-3 mx-auto">
+        <% for( let mall of mallData) { %>
+            <div class="card col-5 mb-5">
+                <img src="/assets/mall<%= mall.MallID %>.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= mall["MallName"] %>
+                    </h5>
+                    <div class="card-text container mt-3">
+                        <div class="row">
+                            <p class="col-5"> <i class="fas fa-map-marker-alt"></i>
+                                &nbsp;<%= mall["Location"] %>
+                            </p>
+                            <p class="col-5"> <i class="far fa-envelope"></i>
+                                &nbsp;<%= mall["ContactInfo"] %>
+                            </p>
+                            <p class="col-5"> <i class="fas fa-user"></i>
+                                &nbsp;<%= mall["VisitorCount"] %>
+                            </p>
+                            <p class="col-5"> <i class="far fa-clock"></i>
+                                &nbsp;<%= mall["OpeningHours"] %> - <%= mall["ClosingHours"]%>
+                            </p>
+                        </div>
+                        <div class=" mt-3 row text-center">
+                            <div class="col-3"></div>
+                            <a href="/mall/<%= mall["MallID"] %>/shops" type="button" class="btn btn-primary col-6"> View Shops </a>
+                            <div class="col-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% if(mall["MallID"] % 2===1) {%>
+                <div class="col-2"></div>
+                <% } %>
+                    <% } %>
+    </div>
+
+    <%- include('partials/footer.ejs') %>

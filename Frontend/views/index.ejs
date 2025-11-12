@@ -1,0 +1,89 @@
+<%- include('partials/header.ejs',{loggedInCustomer,logStatus: logStatus}) %>
+    <!-- Main Hero -->
+    <div class="row flex-lg-row-reverse align-items-center g-5 pt-5 pb-2 mb-4">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="/assets/hero.jpg" class="d-block mx-lg-auto img-fluid" alt="shopping-image" width="700"
+                height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3"><span class="text-primary">ShopSpectra : </span>
+                Revolutionizing Mall Management Systems</h1>
+            <p class="lead">"Welcome to ShopSpectra, where innovation meets retail seamlessly. Our cutting-edge
+                Mall Management System is designed to elevate your shopping experience and streamline operations for
+                mall administrators. From dynamic shop management to comprehensive customer engagement, we've crafted a
+                solution that redefines the way malls operate.</p>
+        </div>
+    </div>
+
+    <!-- Center Hero -->
+    <div class="px-4 text-center pt-5 mb-4">
+        <img class="d-block mx-auto" src="/assets/shop.jpg" width="500">
+        <h1 class="display-5 fw-bold text-body-emphasis"> Growing <span class="text-primary">Harmony</span></h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead my-4">Embraced by 300+ delighted customers and endorsed by 75+ thriving shops across India.
+                Elevating life's experiences, one beautiful connection at a time.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            </div>
+        </div>
+    </div>
+
+    <!-- Our Features -->
+    <h2 class="display-6 fw-bold text-body-emphasis pt-5 mb-4">Our Highlights &#x2728;</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col d-flex align-items-start">
+            <div
+                class="p-2 rounded icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <i class="fas fa-cogs"></i>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis mb-2">Unified Management</h3>
+                <p>Effortlessly manage every aspect of your mall from a centralized platform. Gain real-time insights
+                    into mall performance, employee analytics, and customer reviews</p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div
+                class="p-2 rounded icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis mb-2">Efficient Operations</h3>
+                <p>Optimize day-to-day operations with features like fast service , accurate information and regular
+                    updates. Say
+                    goodbye to inefficiencies.</p>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div
+                class="p-2 rounded icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <i class="fas fa-users"></i>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis mb-2">Customer Freindly</h3>
+                <p>Indulge in a delightful shopping experience where customers can effortlessly explore a myriad of
+                    shops, peruse authentic reviews, and share their own firsthand experiences.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Join Button -->
+    <div class="p-5 text-center text-bg-primary rounded-3 mb-5">
+        <h1 class=" text-light">Join Us !</h1>
+        <p class="col-lg-8 mx-auto  text-light fs-5">
+            Embark on a journey of discovery and delight! Join us and become a part of a vibrant community where every
+            experience is shared, every opinion matters, and every connection sparkles with excitement.
+        </p>
+        <div class="d-inline-flex gap-2 mb-2">
+            <a href="/sign-up"><button
+                    class="d-inline-flex align-items-center btn btn-light btn-lg px-4 rounded-pill text-primary fw-bold"
+                    type="button">
+                    Join Now&nbsp;&nbsp;
+                    <i class="fas fa-arrow-right"></i>
+                </button></a>
+            <a href="/login"><button class="btn btn-outline-light btn-lg px-4 rounded-pill" type="button">
+                    Sign In
+                </button></a>
+        </div>
+    </div>
+
+    <%- include('partials/footer.ejs') %>

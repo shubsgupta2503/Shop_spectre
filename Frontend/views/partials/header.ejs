@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-utilities.css">
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,200&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/layout.css">
+    <!-- <link rel="stylesheet" href="/css/content.css"> -->
+    <title>ShopSpectra</title>
+    <script defer src="/js/bootstrap.bundle.js"></script>
+</head>
+<header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between p-3 mb-4 border-bottom bg">
+    <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+            <img src="/assets/logo.png" alt="logo" height="70px">
+        </a>
+    </div>
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="/" class="nav-link px-2 fs-5 px-4 fw-semibold">Home</a></li>
+        <li><a href="/malls" class="nav-link px-2 fs-5 px-4 fw-semibold">Malls</a></li>
+        <li><a href="/contact" class="nav-link px-2 fs-5 px-4 fw-semibold">Contact</a></li>
+        <li><a href="/about" class="nav-link px-2 fs-5 px-4 fw-semibold">About</a></li>
+    </ul>
+    <% if(logStatus) { %>
+        <div class="col-md-3 text-end d-flex flex-column align-items-center justify-content-center">
+            <a class="btn btn-primary" href="/dashboard" role="button">Dashborad</a>
+        </div>
+        <% } else { %>
+            <div class="col-md-3 text-end">
+                <a class="btn btn-outline-primary fw-bold" href="/sign-up" role="button">Sign Up</a>
+                <a class="btn btn-primary fw-bold" href="/login" role="button">Login</a>
+            </div>
+            <% } %>
+
+</header>
+<main class="container">

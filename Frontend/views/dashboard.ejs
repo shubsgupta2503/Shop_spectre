@@ -1,0 +1,265 @@
+<%- include('partials/header.ejs',{loggedInCustomer,logStatus: logStatus}) %>
+<% if(logStatus){ %>
+  <%# Admin Dashboard  %>
+  <% if(loggedInCustomer.adminDetails){ %>
+    <% const {mallDetails,shopsDetails , shopsTransactions} = adminMallDetails  %>
+<div class="row d-flex">
+  <div class="col-8">
+    <img src="/assets/welcome.jpg" alt="" height="500px">
+  </div>
+  <div class="col-4 d-flex flex-column justify-content-center gap-4">
+    <div class="text-center">
+      <h1 class="">Welcome, <span class="text-primary"><%= loggedInCustomer.name %></span>!</h1>
+    </div>
+    <div class="px-5">
+      <p class="fs-5">Admin ID: <%= loggedInCustomer.id %>
+      </p>
+      <p class="fs-5">Mall ID: <%= loggedInCustomer.adminDetails.MallId %>
+      </p>
+      <p class="fs-5">Email: <%= loggedInCustomer.email %>
+      </p>
+      <p class="fs-5">Contact Info: <%= loggedInCustomer.contactInfo %> </p>
+    </div>
+  </div>
+</div>
+<hr />
+<!-- Abount the Mall -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body ">
+          <div class="heading p-0">
+            <h2 class="card-header text-center text-white text-bg-primary rounded-3 my-3">Mall Details</h2>
+          </div>
+          <% for (let mall of mallDetails) { %>
+            <div class="mb-4">
+              <h3 class="text-center"> <i class="fas fa-map-marker-alt primary-color mb-4"></i>  <%= mall.MallName %></h3>
+              <p> <i class="fas fa-globe primary-color"></i><strong>&nbsp;&nbsp;&nbsp;Location:&nbsp;</strong> <%= mall.Location %></p>
+              <p> <i class="fas fa-phone-alt primary-color"></i><strong>&nbsp;&nbsp;&nbsp;Contact Info:&nbsp;</strong> <%= mall.ContactInfo %></p>
+              <p> <i class="fas fa-users primary-color"></i><strong>&nbsp;&nbsp;&nbsp;Visitor Count:&nbsp;</strong> <%= mall.VisitorCount %></p>
+              <p> <i class="far fa-clock primary-color"></i><strong>&nbsp;&nbsp;&nbsp;Opening Hours:&nbsp;</strong> <%= mall.OpeningHours %> - <%= mall.ClosingHours %></p>
+              <p><i class="fas fa-store primary-color"></i><strong>&nbsp;&nbsp;&nbsp;Number of Shops:&nbsp;</strong> <%= mall.NumberOfShops %> </p>
+            </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+<!-- Shop Details -->
+<div class="container my-5">
+  <div class="text-primary text-center fw-bold mb-5"> <h2>Shop Details</h2> </div>
+  <div class="row">
+    <% for (let shop of shopsDetails) { %>
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <h5 class="card-header p-3 text-center"><%= shop.ShopName %> <i class="fas fa-shopping-bag"></i></h5>
+          <div class="card-body">
+            <p class="card-text"><strong>Category:</strong> <%= shop.Category %> <i class="fas fa-tags"></i></p>
+            <p class="card-text"><strong>Contact Info:</strong> <%= shop.ContactInfo %> <i class="fas fa-phone-alt"></i></p>
+            <p class="card-text"><strong>Rent Amount:</strong> <%= shop.RentAmount %> <i class="fas fa-money-bill-wave"></i></p>
+            <p class="card-text"><strong>Description:</strong> <%= shop.Description %> <i class="fas fa-info-circle"></i></p>
+            <p class="card-text"><strong>Profit Amount:</strong> <%= shop.ProfitAmount %> <i class="fas fa-chart-line"></i></p>
+            <a href="/delete/shop/<%= shop.ShopID %>" role="button" class="btn btn-danger">Delete Shop</a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div> 
+<hr /> 
+<!-- Insert Shops -->
+<div class="row d-flex justify-content-center">
+  <div class="col-6 my-5">
+    <h2 class="mb-4 text-center text-primary">Add a New Shop</h2>
+    <form action="/add-shop" method="POST">
+      <div class="mb-3">
+        <label for="shopName" class="form-label">Shop Name</label>
+        <input type="text" class="form-control" id="shopName" name="shopName" required>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <input type="text" class="form-control" id="category" name="category" required>
+      </div>
+      <div class="mb-3">
+        <label for="contactInfo" class="form-label">Contact Information</label>
+        <input type="text" class="form-control" id="contactInfo" name="contactInfo" required>
+      </div>
+      <div class="mb-3">
+        <label for="rentAmount" class="form-label">Rent Amount</label>
+        <input type="text" class="form-control" id="rentAmount" name="rentAmount" required>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Shop</button>
+    </form>
+  </div>
+</div>
+<hr /> 
+<!-- Display Transactions -->
+<div class="container mt-5">
+  <h2 class="mb-4 text-center text-primary">Shop Transactions</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Transaction ID</th>
+        <th scope="col">Customer ID</th>
+        <th scope="col">Shop ID</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (let transaction of shopsTransactions) { %>
+        <tr>
+          <td><%= transaction.TransactionID %></td>
+          <td><%= transaction.CustomerID %></td>
+          <td><%= transaction.ShopID %></td>
+          <td><%= transaction.Amount %></td>
+          <td>
+            <!-- Font Awesome Edit Icon -->
+            <a href="/edit/transaction?transactionId=<%= transaction.TransactionID %>" class="text-warning me-3">
+              <i class="fas fa-edit"></i>
+            </a>
+            <!-- Font Awesome Delete Icon -->
+            <a href="/delete/transaction?transactionId=<%= transaction.TransactionID %>" class="text-danger">
+              <i class="fas fa-trash-alt"></i>
+            </a>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+<hr />
+<%# Sign out %>
+<div class="text-center my-5">
+  <a href="/sign-out" class="btn btn-danger" role="button">Sign Out</a>
+</div>
+<%# Customer Dashboard  %>
+<% }else{ %>
+<div class="row d-flex">
+  <div class="col-8">
+    <img src="/assets/welcome.jpg" alt="" height="500px">
+  </div>
+  <div class="col-4 d-flex flex-column justify-content-center gap-4">
+    <div class="text-center">
+      <h1 class="">Welcome, <span class="text-primary"><%= loggedInCustomer.name %></span>!</h1>
+    </div>
+    <div class="px-5">
+      <p class="fs-5">Customer ID: <%= loggedInCustomer.id %>
+      </p>
+      <p class="fs-5">Email: <%= loggedInCustomer.email %>
+      </p>
+      <p class="fs-5">Contact Info: <%= loggedInCustomer.contactInfo %>
+    </div>
+  </div>
+  <hr />
+</div>
+<div class="container mt-5">
+  <h2 class="text-center mb-4 text-primary">Shop Reviews</h2>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% for (let review of customerReviews) { %>
+    <div class="col">
+      <div class="card" id=<%= review.ShopID %>>
+        <div class="card-body">
+          <h5 class="card-title"><%= review.ShopName %></h5>
+          <p class="card-text">Rating: <%= review.rating %> <i class="fas fa-star"></i></p>
+          <p class="card-text"><%= review.Comments %></p>
+          <% dhref = `/delete/review?shopId=${review.ShopID}&customerId=${review.CustomerID}` %>
+          <a href=<%= dhref %> class="btn btn-danger">Delete Review</a>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+<hr />
+
+<%# Adding reviews %>
+<div class="container mt-5">
+  <h2 class="text-center mb-4 text-primary">Add Reviews</h2>
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center">Insert Review</h2>
+            <% url = `/review/insert?CustomerId=${loggedInCustomer.id}` %>
+            <form action=<%= url %> method="POST">
+              <div class="mb-3">
+                <label for="shopId" class="form-label">Shop ID</label>
+                <input type="text" class="form-control" id="shopId" name="shopId" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="comments" class="form-label">Comments</label>
+                <textarea class="form-control" id="comments" name="comments" rows="4" required></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <input type="number" class="form-control" id="rating" name="rating" step="0.01" min="0" max="5" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# Adding Transactions %>
+<hr />
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center text-primary">Transaction History</h2>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Transaction ID</th>
+                <th scope="col">Shop ID</th>
+                <th scope="col">Shop Name</th>
+                <th scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% customerTransactions.forEach(transaction => { %>
+              <tr>
+                <td><%= transaction.TransactionID %></td>
+                <td><%= transaction.ShopID %></td>
+                <td><%= transaction.ShopName %></td>
+                <td>$<%= transaction.Amount %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<hr />
+<%# Sign out %>
+<div class="text-center">
+  <a href="/sign-out" class="btn btn-danger" role="button">Sign Out</a>
+</div>
+<% } %>
+<% } %>
+<%- include('partials/footer.ejs') %>

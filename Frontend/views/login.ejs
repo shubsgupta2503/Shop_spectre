@@ -1,0 +1,95 @@
+<%- include('partials/header.ejs',{ loggedInCustomer,logStatus: logStatus }) %>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="customer-tab" data-bs-toggle="tab" data-bs-target="#customer-tab-pane"
+                type="button" role="tab" aria-controls="customer-tab-pane" aria-selected="true">Customer</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin-tab-pane"
+                type="button" role="tab" aria-controls="admin-tab-pane" aria-selected="false">Admin</button>
+        </li>
+    </ul>
+    <div class="tab-content mt-5" id="myTabContent">
+        <div class="tab-pane fade show active" id="customer-tab-pane" role="tabpanel" aria-labelledby="customer-tab"
+            tabindex="0">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="form py-2 col-8 mb-4 rounded-3 shadow">
+                    <h1 class="text-center fw-5 text-body-emphasis mt-5 mb-4">Login to <span
+                            class="text-primary">ShopSpectra</span>!
+                    </h1>
+                    <form action="/login/submit" method="post" class="container needs-validated">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-1"></div>
+                            <div class="col-10">
+                                <div class="col-auto">
+                                    <label for="text" class="col-form-label">Customer ID</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="text" id="text" class="form-control" name="customerId" required>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="password" class="col-form-label">Password</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="password" id="password" class="form-control"
+                                        aria-describedby="passwordHelpInline" name="password" required>
+                                </div>
+                                <div class="col-auto">
+                                    <div id="passwordHelpInline" class="form-text">
+                                        Must be 8-20 characters long.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary fw-semibold my-4 mx-auto">Submit</button>
+                            </div>
+                            <div class="col-1"></div>
+                    </form>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="admin-tab-pane" role="tabpanel" aria-labelledby="admin-tab" tabindex="0">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="form py-2 col-8 mb-4 rounded-3 shadow">
+                <h1 class="text-center fw-5 text-body-emphasis mt-5 mb-4">Hi  <span
+                        class="text-primary">Admin</span>!
+                </h1>
+                <form action="/login/admin/submit" method="post" class="container needs-validated">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <div class="col-auto">
+                                <label for="text" class="col-form-label">Admin ID</label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="text" id="text-admin" class="form-control" name="adminId" required>
+                            </div>
+                            <div class="col-auto">
+                                <label for="password" class="col-form-label">Password</label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="password" id="password-admin" class="form-control"
+                                    aria-describedby="passwordHelpInline" name="password" required>
+                            </div>
+                            <div class="col-auto">
+                                <div id="passwordHelpInline" class="form-text">
+                                    Must be 8-20 characters long.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary fw-semibold my-4 mx-auto">Submit</button>
+                        </div>
+                        <div class="col-1"></div>
+                </form>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+    </div>
+
+    <%- include('partials/footer.ejs') %>

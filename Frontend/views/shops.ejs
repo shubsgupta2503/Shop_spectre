@@ -1,0 +1,44 @@
+<%- include('partials/header.ejs',{ loggedInCustomer,logStatus: logStatus }) %>
+    <% const {shopData,reviews}=locals.allShopData %>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <% for(let shop of shopData) {%>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#shopDetails-<%= shop["ShopID"] %>" aria-expanded="false"
+                            aria-controls="shopDetails-<%= shop["ShopID"] %>">
+                                <%= shop["ShopName"] %>
+                        </button>
+                    </h2>
+                    <div id="shopDetails-<%= shop["ShopID"] %>" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <h3 class="text-center text-primary"><strong><%= shop["Description"] %></strong> </h3>
+                            <p class="mb-2"><i class="fas fa-tags"></i>&nbsp;&nbsp;<strong>Category</strong> &nbsp;&nbsp;<%= shop.Category %></p>
+                            <p class="mb-2"><i class="fas fa-envelope"></i>&nbsp;&nbsp;<strong>Email</strong> &nbsp;&nbsp;<%= shop.ContactInfo %></p>
+                            <p class="mb-2"><i class="fas fa-star"></i>&nbsp;&nbsp;<strong>Average Rating</strong> &nbsp;&nbsp; <%= shop.AVG_Rating %></p>
+                            <div class="container mt-5"> 
+                                <h2 class="text-center mb-4 text-primary">Shop Reviews</h2>
+                                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                  <% for (let review of reviews) { %>
+                                    <% if(review.ShopID === shop.ShopID){ %>
+                                    <div class="col">
+                                      <div class="card">
+                                        <div class="card-body">
+                                          <h5 class="card-title"><%= review.Name %></h5>
+                                          <p class="card-text">Rating: <%= review.rating %> <i class="fas fa-star"></i></p>
+                                          <p class="card-text"><%= review.comments %></p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <% } %>
+                                  <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <% } %>
+        </div>
+
+        <%- include('partials/footer.ejs') %>

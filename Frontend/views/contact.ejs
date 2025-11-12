@@ -1,0 +1,19 @@
+<%- include('partials/header.ejs',{ loggedInCustomer,logStatus: logStatus }) %>
+<section class="container my-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="mb-4">Contact Us</h2>
+      <p>
+        Feel free to reach out to us for any inquiries or information. We are here to assist you!
+      </p> 
+      <ul class="list-unstyled d-flex justify-content-center gap-3">
+        <li><a href="mailto:pradenya.prog@gmail.com" style="display: block;width: 2rem;"><i class="fas fa-envelope"></i></a></li>
+        <li><a href="https://github.com/PradneyaSP" target="_blank"><i class="fab fa-github"></i></a></li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <!-- You can add a contact form here if needed -->
+    </div>
+  </div>
+</section>
+<%- include('partials/footer.ejs') %>

@@ -1,0 +1,68 @@
+<%- include('partials/header.ejs',{loggedInCustomer,logStatus: logStatus}) %>
+<% let styles="" ; if(locals.isValid===false){ styles="border border-danger" } %>
+<div class="row">
+
+  <div class="col-2"></div>
+  <div class="form py-2 col-8 mb-4 rounded-3 shadow">
+    <h1 class="text-center fw-5 text-body-emphasis mt-5">Sign Up for <span class="text-primary">ShopSpectra</span>!
+    </h1>
+    <form action="/sign-up/submit" method="post" class="container needs-validated">
+      <div class="row g-3 align-items-center">
+        <div class="col-1"></div>
+        <div class="col-10">
+          <div class="col-auto">
+            <label for="text" class="col-form-label">Name</label>
+          </div>
+          <div class="col-auto">
+            <input type="text" id="text" class="form-control" name="name" required>
+          </div>
+          <div class="invalid-feedback">
+            Please enter a message in the textarea.
+          </div>
+          <div class="col-auto">
+            <label for="email" class="col-form-label">Email</label>
+          </div>
+          <div class="col-auto">
+            <input type="email" id="email" class="form-control" name="email" required>
+          </div>
+          <div class="col-auto">
+            <label for="number" class="col-form-label">Mobile Number</label>
+          </div>
+          <div class="col-auto">
+            <input type="number" id="number" class="form-control" name="contactinfo" required>
+          </div>
+          <div class="col-auto">
+            <label for="password" class="col-form-label">Password</label>
+          </div>
+          <div class="col-auto">
+            <input type="password" id="password" class="form-control" aria-describedby="passwordHelpInline" name="password" required>
+          </div>
+          <div class="col-auto">
+            <div id="passwordHelpInline" class="form-text">
+              Must be 8-20 characters long.
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="col-auto">
+              <label for="confirmPassword" class="col-form-label">Confirm Password</label>
+            </div>
+            <div class="col-auto">
+              <input type="password" id="confirmPassword" class="form-control <%= styles %>" name="confirmPassword" aria-describedby="confirmPasswordHelpInline" required>
+            </div>
+            <div class="col-auto">
+              <div id="confirmPasswordHelpInline" class="form-text">
+                Must match with Password
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary fw-semibold my-4 mx-auto">Submit</button>
+        </div>
+        <div class="col-1"></div>
+    </form>
+  </div>
+  <div class="col-2"></div>
+</div>
+
+<%- include('partials/footer.ejs') %>
